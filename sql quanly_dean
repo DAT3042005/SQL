@@ -1,0 +1,43 @@
+CREATE TABLE CHUYENMON(
+MaTDCM char(3) PRIMARY KEY,
+TenTDCM varchar(100)
+)
+CREATE TABLE NHANVIEN(
+ MaNV char(10) PRIMARY KEY,
+ HoNV nvarchar(20),
+ TenLotNV nvarchar(20),
+ TenNV nvarchar(20),
+ NgaySinh datetime,
+ Phai  nvarchar(3),
+ DiaChi varchar(100),
+ HeSoLuong decimal(4,2),
+ MaTDCM char(3)REFERENCES CHUYENMON(MaTDCM)
+)
+CREATE TABLE PHONGBAN(
+ MaPhong char(2) PRIMARY KEY,
+ TenPhong Nvarchar (100)
+)
+CREATE TABLE NHIEMVU(
+ MaNhiemVu char (2),
+ TenNhiemVu Nvarchar (100)
+)
+CREATE TABLE NHAN_NHIEMVU(
+ MaNV char(10) ,
+ MaPhong char(2) ,
+ MaNhiemVu char (2),
+ PRIMARY KEY(MaNV,MaPhong,MaNhiemVu),
+ NgayNhanNhiemVu DATETIME,
+ NgayKetThucNhiemVu DATETIME
+)
+CREATE TABLE DEAN(
+ MaDA char (2)PRIMARY KEY,
+ TenDA nvarchar(50),
+  DiaDiemDA nvarchar(50),
+  MaPhong char(2) REFERENCES PHONGBAN(MaPhong),
+  NgayBatDau DATETIME,
+  NgayKetThuc DATETIME
+)
+CREATE TABLE PHANCONG(
+ MaNV char(6) PRIMARY KEY,
+ ThoiGian DECIMAL(3,1),
+)
